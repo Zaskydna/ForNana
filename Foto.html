@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foto Bubub</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ffeded, #ffe6e6);
+            min-height: 100vh;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            z-index: 1000;
+        }
+
+        .back-button:hover {
+            transform: scale(1.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .header h1 {
+            color: #ff4d6d;
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .photo-card {
+            background: white;
+            padding: 10px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .photo-card .caption {
+            padding: 10px;
+            text-align: center;
+            color: #ff4d6d;
+        }
+
+        .heart {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #ff4d6d;
+            font-size: 24px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .photo-card:hover .heart {
+            opacity: 1;
+            animation: heartBeat 1s infinite;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width: 80%;
+            max-height: 80%;
+        }
+
+        .modal-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 10px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <button class="back-button" onclick="history.back()">
+        <i class="fas fa-arrow-left"></i> Kembali
+    </button>
+
+    <div class="container">
+        <div class="header">
+            <h1>My Gallery</h1>
+            <p>The Content is only about you ❤️</p>
+        </div>
+
+        <div class="photo-grid">
+            <!-- Gunakan placeholder untuk contoh -->
+            <div class="photo-card" onclick="openModal(this)">
+                <img src="Photo/WithU_1.jpg" alt="Our Memory 1">
+                <div class="caption">💓First Date💓</div>
+                <i class="fas fa-heart heart"></i>
+            </div>
+            <div class="photo-card" onclick="openModal(this)">
+                <img src="Photo/WithU_3.jpg" alt="Our Memory 2">
+                <div class="caption">Gak Tau Lucu Aja 💑</div>
+                <i class="fas fa-heart heart"></i>
+            </div>
+            <div class="photo-card" onclick="openModal(this)">
+              <img src="Photo/Bubub_12.jpg" alt="Our Memory 4">
+              <div class="caption">Kenalan dong dekk, kamu gemesin banget🐊</div>
+              <i class="fas fa-heart heart"></i>
+          </div>
+            <div class="photo-card" onclick="openModal(this)">
+                <img src="Photo/Bubub_1.jpg" alt="Our Memory 3">
+                <div class="caption">Ngeliat aku gitu banget Kakk 😝</div>
+                <i class="fas fa-heart heart"></i>
+            </div>
+            <div class="photo-card" onclick="openModal(this)">
+                <img src="Photo/Bubub_2.jpg" alt="Our Memory 4">
+                <div class="caption">WOWWW </div>
+                <i class="fas fa-heart heart"></i>
+            </div>
+            <div class="photo-card" onclick="openModal(this)">
+              <img src="Photo/Bubub_3.jpg" alt="Our Memory 4">
+              <div class="caption">Ini pose kesukaanku sih😅</div>
+              <i class="fas fa-heart heart"></i>
+          </div>
+          <div class="photo-card" onclick="openModal(this)">
+            <img src="Photo/Bubub_4.jpg" alt="Our Memory 4">
+            <div class="caption">Gak Kuatt...Bubub lucu banget kalau gini😘</div>
+            <i class="fas fa-heart heart"></i>
+        </div>
+        <div class="photo-card" onclick="openModal(this)">
+          <img src="Photo/Bubub_5.jpg" alt="Our Memory 4">
+          <div class="caption">Cantik Banget CIHH..</div>
+          <i class="fas fa-heart heart"></i>
+      </div>
+      <div class="photo-card" onclick="openModal(this)">
+        <img src="Photo/Bubub_6.jpg" alt="Our Memory 4">
+        <div class="caption">Malu-Malu Kucing Ceritanya😼</div>
+        <i class="fas fa-heart heart"></i>
+    </div>
+    <div class="photo-card" onclick="openModal(this)">
+      <img src="Photo/Bubub_7.jpg" alt="Our Memory 4">
+      <div class="caption">Pap Bubub di Mall🫶</div>
+      <i class="fas fa-heart heart"></i>
+  </div>
+  <div class="photo-card" onclick="openModal(this)">
+    <img src="Photo/Bubub_11.jpg" alt="Our Memory 4">
+    <div class="caption">Bubub iri gak disuapin🤣</div>
+    <i class="fas fa-heart heart"></i>
+</div>
+  <div class="photo-card" onclick="openModal(this)">
+    <img src="Photo/Bubub_8.jpg" alt="Our Memory 4">
+    <div class="caption">Batiba dikirimin pose Doranya 📸</div>
+    <i class="fas fa-heart heart"></i>
+</div>
+<div class="photo-card" onclick="openModal(this)">
+  <img src="Photo/Bubub_9.jpg" alt="Our Memory 4">
+  <div class="caption">Bisa gak sih, kalau Bobo itu gak usah tetep cantik juga kak😴</div>
+  <i class="fas fa-heart heart"></i>
+</div>
+<div class="photo-card" onclick="openModal(this)">
+  <img src="Photo/Bubub_13.jpg" alt="Our Memory 4">
+  <div class="caption">Jalan-Jalan Lagii..🛵</div>
+  <i class="fas fa-heart heart"></i>
+</div>
+<div class="photo-card" onclick="openModal(this)">
+  <img src="Photo/Bubub_10.jpg" alt="Our Memory 4">
+  <div class="caption">Pap LDR 😔🫶</div>
+  <i class="fas fa-heart heart"></i>
+</div>
+<div class="photo-card" onclick="openModal(this)">
+  <img src="Photo/Bubub_14.png" alt="Our Memory 4">
+  <div class="caption">PP Baru Ayang😮</div>
+  <i class="fas fa-heart heart"></i>
+</div>
+        </div>
+    </div>
+
+    <div class="floating-hearts"></div>
+
+    <div class="modal" onclick="closeModal()">
+        <span class="close-modal">&times;</span>
+        <div class="modal-content">
+            <img src="" alt="Enlarged photo">
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk membuat efek hati melayang
+        function createHeart() {
+            const heart = document.createElement('i');
+            heart.classList.add('fas', 'fa-heart');
+            heart.style.position = 'absolute';
+            heart.style.color = '#ff4d6d';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '100vh';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            heart.style.animation = `floating ${Math.random() * 3 + 2}s linear infinite`;
+            document.querySelector('.floating-hearts').appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        // Membuat style untuk animasi floating
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes floating {
+                from { transform: translateY(0) rotate(${Math.random() * 360}deg); }
+                to { transform: translateY(-100vh) rotate(${Math.random() * 360}deg); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Membuat hati setiap beberapa detik
+        setInterval(createHeart, 300);
+
+        // Fungsi untuk modal
+        function openModal(card) {
+            const modal = document.querySelector('.modal');
+            const modalImg = modal.querySelector('img');
+            const cardImg = card.querySelector('img');
+            modalImg.src = cardImg.src;
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.querySelector('.modal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

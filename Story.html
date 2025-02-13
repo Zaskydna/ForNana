@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Love Story</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ffd1d1, #ff9ecd);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            z-index: 1000;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .back-button:hover {
+            transform: scale(1.1);
+        }
+
+        .story-container {
+            max-width: 800px;
+            margin: 60px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .story-title {
+            text-align: center;
+            color: #ff4d6d;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .story-content {
+            color: #333;
+            font-size: 1.2em;
+            line-height: 1.8;
+            text-align: justify;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .story-page {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .story-page.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .decorative-border {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 2px solid #ff4d6d;
+            border-radius: 10px;
+            pointer-events: none;
+            opacity: 0.3;
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .nav-button {
+            padding: 10px 25px;
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-button:hover {
+            transform: scale(1.05);
+            background: #ff3357;
+        }
+
+        .nav-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .page-indicator {
+            text-align: center;
+            color: #666;
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <button class="back-button" onclick="history.back()">
+        <i class="fas fa-arrow-left"></i> Kembali
+    </button>
+
+    
+    <div class="story-container">
+        <div class="decorative-border"></div>
+        <h1 class="story-title">Our Story</h1>
+
+        <div class="story-page active" data-page="1">
+            <div class="story-content">
+              <p>Hasna Fadhila Sausan, sebuah nama yang tak pernah terpikirkan akan menjadi sebuah bagian dari cerita hidupku. Semasa SMA, memang kami bukanlah seorang yang begitu akrab atau sering berkomunikasi. Begitupun di Awal Perkuliahan, kami hanya bertemu sewaktu Pionir dan juga di akhir semester 1, saat ENFORIAN 2024. </p>
+            </div>
+        </div>
+
+        <div class="story-page" data-page="2">
+            <div class="story-content">
+              <p>Cerita ini dimulai dari akhir Desember. Pagi itu, Aku melihat notif di HandPhone ku yang bertuliskan “Naynala melihat Profil Anda”. Sontak saja aku kaget dan penasaran akan hal itu. Apakah itu Naila ? seorang anak farmasi yang juga pernah dekat denganku sebelumnya. Akhirnya, dengan penuh keberanian, aku mengikuti akun tersebut dan tidak senggang lama akun tersebut balik mengikutiku. Aku masih penasaran dengan akun itu,  sampai bolak-balik mengunjungi profilnya. Akhirnya, aku menemukan akun dari Kintan dan bertanya tentang akun tersebut kepadanya. Dann.. ternyata itu akun dari Hasna Fadhila Sausan. </p>
+            </div>
+        </div>
+
+        <div class="story-page" data-page="3">
+            <div class="story-content">
+              <p>Mungkin, aku bisa dibilang agak kecewa, tapi yasudahlah buat apa juga galau. Suatu Hari, tanpa disengaja, dia menyenggol postingan ulangku. Dia kemudian chat secara asal mungkin panik gitulah. Dan yaps mulai dari situlah percakapan kami. Aku juga sering mengomentari postingan ulangnya. Kami juga sering membahas tentang crush ataupun orang yang pernah dekat dengan kami sebelumnya. </p>
+            </div>
+        </div>
+
+        <div class="story-page" data-page="4">
+            <div class="story-content">
+              <p>Hasna dan Aku juga sama-sama satu divisi Roadshow di SENOPATI. Sebuah organisasi yang mengadakan sosialisasi dan juga tryout SNBT untuk anak SMA. Mungkin, dari situlah kami sering berinteraksi satu sama lain. Entah mengapa, aku merasa bahwa nana adalah orang yang baik dan perhatian kepadaku. Aku ingat setiap momen yang ia lakukan waktu itu, meskipun terkadang aku mengatakan tidak mengingatnya.</p>
+            </div>
+        </div>
+
+        <div class="story-page" data-page="5">
+            <div class="story-content">
+              <p>Setelah SENOPATI, kami berdua semakin akrab dan sering chat an, yaa meskipun hanya di Tik Tok. Akhirnya, pada tanggal 30 Januari tepat pukul 23.30 aku mengatakan bahwa aku sayang kepadanya. Dan akhirnya, kami berdua memiliki hubungan yang lebih daripada teman. Kami pun menghabiskan beberapa hari berikutnya dengan mesra, hingga akhirnya memanggil sayang, baby, bubub, dan kata panggilan romantis lainnya. </p>
+              </div>
+        </div>
+
+        <div class="story-page" data-page="6">
+            <div class="story-content">
+              <p>Aku masih ingat waktu itu, Dimana aku sangat tidak menyangka bahwa orang sepertiku ini juga memiliki orang yang sayang denganku. Setiap bangun, aku selalu mengecek HandPhoneku untuk sekedar membuka chat dengannya memastikan bahwa ini bukanlah mimpi. Aku sangat senang dan Bahagia saat itu. Tak jarang, kami juga bertelponan sampai larut malam dan aku memang sengaja untuk tidak mematikan telpon itu, meskipun baterai HandPhoneku sudah tinggal 3%.</p>
+           
+              </div>
+        </div>
+
+        <div class="story-page" data-page="7">
+            <div class="story-content">
+              <p>Akhirnya sewaktu di Jogja, kami berdua bertemu secara langsung. Kami pergi mengelilingi Kota Jogja. Aku sangat senang sekali, Bahagia sekali karena akhirnya aku bisa menunjukkan ke kota Jogja bahwa aku bisa membawa seorang yang sama istimewanya dengan kota Jogja ini. Itu adalah pertama kalinya, aku merasa benar-benar dekat dengan seseorang. Pertama kalinya dalam hidupku, aku merasa dicintai dan disayangi seseorang. Pertama kalinya dalam hidupku, ada seseorang yang benar-benar peduli denganku. Benar-benar moment yang gak akan pernah aku lupakan dalam hidupku.</p>
+            
+              </div>
+        </div>
+
+        <div class="story-page" data-page="8">
+            <div class="story-content">
+              <p>Akan tetapi, laut tak selalu cerah terus menerus, terkadang ada masanya laut juga mengalami badai yang hebat. Begitu juga dengan hubunganku dengan nana. Entah mengapa, tiba-tiba nana merasa enggak yakin dengan perasaannya sendiri, dia merasa takut menyakitiku. Iyaps, itu karena masa lalu yang hadir kembali. Aku selalu mencoba untuk meyakinkannya bahwa aku selalu menerima dia dengan segala latar dan masalahnya. </p>
+            
+              </div>
+        </div>
+
+        <div class="story-page" data-page="9">
+            <div class="story-content">
+              <p>Akhirnya, saat Valentine ini. Ia meminta untuk beristirahat sebentar dari hubungan kami selama 2 minggu. Jujur saja itu membuatku sedih, tetapi aku nggak ingin dia merasa tertekan dan kalau itu pilihannya. Aku akan menerimanya begitu saja karena aku sudah terlanjur sayang dan cinta kepadanya. Biar aku saja yang merasa tersakiti seperti sebelum-sebelumnya. Meskipun cerita ini belum berakhir, aku selalu berharap dan berdoa memiliki sebuah cerita yang Happy Ending, tidak seperti cerita-ceritaku sebelumnya. </p>
+           
+              </div>
+        </div>
+
+        
+
+        <div class="page-indicator">Halaman <span id="currentPage">1</span> dari 9</div>
+
+        <div class="navigation-buttons">
+            <button class="nav-button" id="prevBtn" disabled>
+                <i class="fas fa-chevron-left"></i> Sebelumnya
+            </button>
+            <button class="nav-button" id="nextBtn">
+                Selanjutnya <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="floating-hearts"></div>
+
+    <script>
+        let currentPage = 1;
+        const totalPages = 9;
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const pageIndicator = document.getElementById('currentPage');
+
+        function updatePage(newPage) {
+            // Hide all pages
+            document.querySelectorAll('.story-page').forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // Show new page
+            document.querySelector(`[data-page="${newPage}"]`).classList.add('active');
+
+            // Update page indicator
+            pageIndicator.textContent = newPage;
+
+            // Update buttons
+            prevBtn.disabled = newPage === 1;
+            nextBtn.disabled = newPage === totalPages;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                updatePage(currentPage);
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentPage < totalPages) {
+                currentPage++;
+                updatePage(currentPage);
+            }
+        });
+
+        // Fungsi untuk membuat efek hati melayang
+        function createHeart() {
+            const heart = document.createElement('i');
+            heart.classList.add('fas', 'fa-heart');
+            heart.style.position = 'absolute';
+            heart.style.color = '#ff4d6d';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '100vh';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            heart.style.opacity = '0.6';
+            heart.style.animation = `floating ${Math.random() * 3 + 2}s linear infinite`;
+            document.querySelector('.floating-hearts').appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        // Style untuk animasi floating
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes floating {
+                from { transform: translateY(0) rotate(${Math.random() * 360}deg); }
+                to { transform: translateY(-100vh) rotate(${Math.random() * 360}deg); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Membuat hati setiap beberapa detik
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puisi by Me</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            z-index: 1000;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .back-button:hover {
+            transform: scale(1.1);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .poem-container {
+            text-align: center;
+            position: relative;
+            padding: 20px;
+        }
+
+        .title {
+            color: #ff4d6d;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .poem {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 30px;
+            white-space: pre-line;
+        }
+
+        .line {
+            margin-bottom: 10px;
+            animation: fadeInUp 0.5s ease-out forwards;
+            opacity: 1; /* Ubah opacity menjadi 1 */
+        }
+
+        .audio-player {
+            width: 100%;
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .play-button {
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            font-size: 1.1em;
+        }
+
+        .play-button:hover {
+            transform: scale(1.05);
+            background: #ff3357;
+        }
+
+        .play-button i {
+            margin-right: 10px;
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .decorative-border {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px solid #ff4d6d;
+            margin: 10px;
+            border-radius: 15px;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        .corner-heart {
+            position: absolute;
+            font-size: 24px;
+            color: #ff4d6d;
+            animation: pulse 2s infinite;
+        }
+
+        .corner-heart:nth-child(1) { top: 10px; left: 10px; }
+        .corner-heart:nth-child(2) { top: 10px; right: 10px; }
+        .corner-heart:nth-child(3) { bottom: 10px; left: 10px; }
+        .corner-heart:nth-child(4) { bottom: 10px; right: 10px; }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <button class="back-button" onclick="history.back()">
+        <i class="fas fa-arrow-left"></i> Kembali
+    </button>
+
+    <div class="container">
+        <div class="decorative-border"></div>
+        <i class="fas fa-heart corner-heart"></i>
+        <i class="fas fa-heart corner-heart"></i>
+        <i class="fas fa-heart corner-heart"></i>
+        <i class="fas fa-heart corner-heart"></i>
+
+        <div class="poem-container">
+            <h1 class="title">Labuhan Terakhir</h1>
+            <div class="poem" id="poem">
+              Dulu, aku adalah pelaut yang tersesat,  
+              Berlayar di samudra hati yang retak.  
+              Setiap dermaga yang kusinggahi,  
+              Hanya meninggalkan luka yang tak terobati.  
+              
+              Kukira ku tenggelam dalam Andala,
+              yang ternyata hanya fatamorgana.  
+              Membawaku pada ilusi bahagia,  
+              Namun berakhir dengan nestapa.  
+              
+              Aku pun menurunkan layar,  
+              Menenggelamkan rantai jangkar.  
+              Tak ingin lagi merasakan derana,  
+              Yang datang dari cinta yang salah arah.  
+              
+              Tapi kemudian, kau datang,  
+              Bak arunika yang hangat.  
+              Kau bawa aku keluar dari ujung temaram,  
+              Menuju cahaya yang selama ini kutunggu.  
+              
+              Terima kasih untukmu,  
+              Yang datang tanpa diundang.  
+              Kau adalah jawaban dari doa-doa,  
+              Yang selama ini terpendam dalam diam.  
+              
+              Meskipun takdir itu asrar dan penuh enigma,
+              Tapi, ku selalu percaya akan adanya ikatan.
+              Bersamamu, kutembus gemintang nan acintya,  
+              Dan menulis kisah baru yang amerta.  </div>
+
+            <div class="audio-player">
+                <button class="play-button" onclick="toggleAudio()">
+                    <i class="fas fa-play" id="playIcon"></i>
+                    <span id="playText">Putar Suara</span>
+                </button>
+                <audio id="poemAudio">
+                    <source src="Photo/Puisi_Suara.mp3" type="audio/mpeg">
+                </audio>
+            </div>
+        </div>
+    </div>
+
+    <div class="floating-hearts"></div>
+
+    <script>
+        // Animasi untuk puisi - dengan perbaikan
+        window.onload = function() {
+            const poem = document.getElementById('poem');
+            const lines = poem.innerText.split('\n').filter(line => line.trim() !== '');
+            poem.innerHTML = '';
+            
+            lines.forEach((line, index) => {
+                const lineDiv = document.createElement('div');
+                lineDiv.className = 'line';
+                lineDiv.style.animationDelay = `${index * 0.3}s`;
+                lineDiv.textContent = line;
+                poem.appendChild(lineDiv);
+            });
+        }
+
+        // Fungsi untuk audio
+        let isPlaying = false;
+        const audio = document.getElementById('poemAudio');
+        const playIcon = document.getElementById('playIcon');
+        const playText = document.getElementById('playText');
+
+        function toggleAudio() {
+            if (isPlaying) {
+                audio.pause();
+                playIcon.className = 'fas fa-play';
+                playText.textContent = 'Putar Suara';
+            } else {
+                audio.play();
+                playIcon.className = 'fas fa-pause';
+                playText.textContent = 'Jeda';
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // Fungsi untuk membuat efek hati melayang
+        function createHeart() {
+            const heart = document.createElement('i');
+            heart.classList.add('fas', 'fa-heart');
+            heart.style.position = 'absolute';
+            heart.style.color = '#ff4d6d';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '100vh';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            heart.style.opacity = '0.6';
+            heart.style.animation = `floating ${Math.random() * 3 + 2}s linear infinite`;
+            document.querySelector('.floating-hearts').appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        // Style untuk animasi floating
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes floating {
+                from { transform: translateY(0) rotate(${Math.random() * 360}deg); }
+                to { transform: translateY(-100vh) rotate(${Math.random() * 360}deg); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Membuat hati setiap beberapa detik
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>

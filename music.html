@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <!-- Head section sama seperti sebelumnya -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine Music Player</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Style section sama seperti sebelumnya */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .back-button:hover {
+            transform: scale(1.1);
+        }
+
+        .music-player {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 400px;
+            margin-top: 60px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            animation: float 3s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .album-art {
+            width: 300px;
+            height: 250px;
+            margin: 0 auto 20px;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .album-art img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .song-info {
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .song-info h2 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .song-info p {
+            font-size: 16px;
+            opacity: 0.8;
+        }
+
+        .progress-bar {
+            background: rgba(255, 255, 255, 0.1);
+            height: 5px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .progress {
+            background: white;
+            width: 0%;
+            height: 100%;
+            border-radius: 5px;
+            position: absolute;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .controls button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 20px;
+            transition: transform 0.2s;
+        }
+
+        .controls button:hover {
+            transform: scale(1.2);
+        }
+
+        .play-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: white;
+            color: #060606 !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px !important;
+        }
+
+        .hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.5);
+            animation: floatHeart 4s linear infinite;
+        }
+
+        .time-info {
+            display: flex;
+            justify-content: space-between;
+            color: white;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="back-button" onclick="history.back()">
+        <i class="fas fa-arrow-left"></i> Kembali
+    </button>
+
+    <div class="music-player">
+        <div class="album-art">
+            <img src="Photo/lagu.jpg" alt="Album Art">
+        </div>
+        <div class="song-info">
+            <h2>Siapkah Kau Tuk Jatuh Cinta Lagi</h2>
+            <p>Sebuah lagu yang mewakili kita waktu itu. Bahkan, kamu saat itu takut buat liat note IG ku. Eh, malahan paginya kita couple an lagunya wkwkwk </p>
+        </div>
+        <audio id="audio-player" preload="metadata">
+            <source src="Photo/Siapkah Kau Tuk Jatuh Cinta Lagi - HIVI (Lirik) [osmkSEaP-CQ].mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+        <div class="progress-bar" id="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+        <div class="time-info">
+            <span id="current-time">0:00</span>
+            <span id="duration">0:00</span>
+        </div>
+
+        <div class="controls">
+            <button onclick="previousTrack()"><i class="fas fa-backward"></i></button>
+            <button class="play-button" onclick="togglePlay()"><i class="fas fa-play"></i></button>
+            <button onclick="nextTrack()"><i class="fas fa-forward"></i></button>
+        </div>
+    </div>
+
+    <div class="hearts" id="hearts"></div>
+
+    <script>
+        const audioPlayer = document.getElementById('audio-player');
+        const progressBar = document.getElementById('progress-bar');
+        const progress = document.getElementById('progress');
+        const playButton = document.querySelector('.play-button');
+        const currentTimeSpan = document.getElementById('current-time');
+        const durationSpan = document.getElementById('duration');
+
+        // Fungsi untuk memformat waktu dari detik ke format mm:ss
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = Math.floor(seconds % 60);
+            return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+        }
+
+        // Update progress bar dan waktu
+        audioPlayer.addEventListener('timeupdate', () => {
+            const percentage = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+            progress.style.width = percentage + '%';
+            currentTimeSpan.textContent = formatTime(audioPlayer.currentTime);
+        });
+
+        // Set durasi total saat metadata audio dimuat
+        audioPlayer.addEventListener('loadedmetadata', () => {
+            durationSpan.textContent = formatTime(audioPlayer.duration);
+        });
+
+        // Fungsi untuk toggle play/pause
+        function togglePlay() {
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+                playButton.innerHTML = '<i class="fas fa-pause"></i>';
+            } else {
+                audioPlayer.pause();
+                playButton.innerHTML = '<i class="fas fa-play"></i>';
+            }
+        }
+
+        // Kemampuan untuk mengklik progress bar untuk melompat ke posisi tertentu
+        progressBar.addEventListener('click', (e) => {
+            const rect = progressBar.getBoundingClientRect();
+            const percentage = (e.clientX - rect.left) / rect.width;
+            audioPlayer.currentTime = percentage * audioPlayer.duration;
+        });
+
+        // Fungsi untuk previous track (bisa diimplementasikan sesuai kebutuhan)
+        function previousTrack() {
+            // Implementasi untuk memutar lagu sebelumnya
+            audioPlayer.currentTime = 0;
+        }
+
+        // Fungsi untuk next track (bisa diimplementasikan sesuai kebutuhan)
+        function nextTrack() {
+            // Implementasi untuk memutar lagu selanjutnya
+            audioPlayer.currentTime = 0;
+        }
+
+        // Membuat animasi hati yang beterbangan
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            document.getElementById('hearts').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>

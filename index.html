@@ -1,0 +1,134 @@
+<!-- index.html (Halaman Utama) -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-image: url('Photo/awal.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 20px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+        from { 
+            opacity: 0; 
+            transform: translateY(20px);
+        }
+        to { 
+            opacity: 1; 
+            transform: translateY(0);
+        }
+    }
+
+        h1 {
+            font-size: 3em;
+            color: #ff69b4;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .menu {
+            margin-top: 30px;
+        }
+
+        .menu a {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px 30px;
+            background-color: #ff69b4;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu a:hover {
+            background-color: #ff1493;
+            transform: scale(1.1);
+        }
+        .menu a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: white;
+        transition: width 0.3s ease;
+    }
+
+    .menu a:hover::after {
+        width: 100%;
+    }
+
+    .title-animation {
+        animation: colorChange 3s infinite alternate;
+    }
+
+    @keyframes colorChange {
+        from { color: #ff69b4; }
+        to { color: #ff1493; }
+    }
+
+    .floating {
+        animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+        100% { transform: translateY(0px); }
+    }
+
+        .heart {
+            color: #ff69b4;
+            font-size: 2em;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heart">♥</div>
+        <h1>Happy Valentine's Day My Love</h1>
+        <p>🤍hai sayangku nanaa, aku ada sesuatu nih untuk kamu🤍</p>
+        <p>🫰meskipun gak sebagus itu, aku harap kamu suka yaa...🫶</p>
+
+        <div class="menu">
+            <a href="Story.html">Story</a>
+            <a href="Puisi.html">Dariku</a>
+            <a href="Foto.html">Coba Liat</a>
+            <a href="music.html">Coba Dengerin</a>
+            <a href="semangat.html">Last..</a>
+        </div>
+    </div>
+</body>
+</html>

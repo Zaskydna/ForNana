@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kata-kata Manis Untukmu</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Arial', sans-serif;
+            background-color: #ffe6f2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .quotes-container {
+            max-width: 800px;
+            padding: 30px;
+            margin: 20px;
+        }
+
+        .quote-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .quote-card:hover {
+            transform: translateY(-10px) rotate(2deg);
+        }
+
+        .quote-card::before {
+            content: '♥';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            background: #ff1493;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .quote-text {
+            font-size: 1.2em;
+            color: #333;
+            line-height: 1.6;
+            text-align: center;
+            padding: 10px;
+        }
+
+        h1 {
+            color: #ff1493;
+            text-align: center;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(255,20,147,0.2);
+            margin-bottom: 30px;
+        }
+
+        .floating-hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: #ff69b4;
+            animation: float-up 5s linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .back-button {
+            display: inline-block;
+            margin: 20px;
+            padding: 12px 25px;
+            background-color: #ff69b4;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(255,105,180,0.3);
+        }
+
+        .back-button:hover {
+            background-color: #ff1493;
+            transform: scale(1.1);
+        }
+
+        /* Tambahan animasi ketika mengklik kartu */
+        .quote-card.clicked {
+            animation: cardClick 0.5s;
+        }
+
+        @keyframes cardClick {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="hearts-container"></div>
+    
+    <a href="index.html" class="back-button">← Kembali</a>
+    
+    <div class="quotes-container">
+        <h1>✨ KataKu ✨</h1>
+        
+        <div class="quote-card">
+            <div class="quote-text">
+                "Kisah kita berawal dari membalas pesan kamu, berakhir dengan menjadi bagian dari cerita kamu 📸"
+            </div>
+        </div>
+
+        <div class="quote-card">
+            <div class="quote-text">
+                "Codingan emang bikin pusing, tapi masih ada kamu yang buat aku selalu jadi salting❤️"
+            </div>
+        </div>
+
+        <div class="quote-card">
+            <div class="quote-text">
+                "Kamu itu kayak matematika, yang awalnya emang sulit buat dingertiin. tapi, walaupun ngeselin kamu itu selalu bikin candu✨"
+            </div>
+        </div>
+
+        <div class="quote-card">
+          <div class="quote-text">
+              "Kalau aku program C++, mungkin kamu seperti titik komanya. yang kalau tanpamu, aku gak bakalan bisa jalan🫰"
+          </div>
+      </div>
+
+        <div class="quote-card">
+            <div class="quote-text">
+                "Kenapa nilai pi itu 22/7 ? ya karena kalau yang 24/7 itu kamu yang selalu ada di hatiku💕"
+            </div>
+        </div>
+
+        <div class="quote-card">
+          <div class="quote-text">
+              "Terakhir, aku cuman mau bilang. Tetap Semangat yaa cantikku, sayangku, bububku. Meskipun harimu berat, aku bakalan tetap selalu ada disini buat kamu. Entah apapun yang kamu pilih aku bakalan tetep sayang kamu. Makasih ya naa. Love you sayang 💓"
+          </div>
+      </div>
+      
+    </div>
+
+    <script>
+        // Script untuk membuat efek hati mengambang
+        function createFloatingHearts() {
+            const container = document.getElementById('hearts-container');
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '♥';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            container.appendChild(heart);
+            
+            // Hapus hati setelah animasi selesai
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        // Buat hati baru setiap 300ms
+        setInterval(createFloatingHearts, 300);
+
+        // Tambahkan efek klik pada kartu
+        document.querySelectorAll('.quote-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.classList.add('clicked');
+                setTimeout(() => {
+                    this.classList.remove('clicked');
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>
